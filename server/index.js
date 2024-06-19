@@ -2,12 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const routes = require('./routes');
 
 const app = express();
 
 
 app.use(cors());
 app.use(bodyParser.json());
+
 
 // Connect to MongoDB
 mongoose.set('strictQuery', false);
@@ -22,7 +24,7 @@ const connect = async () => {
   }
 };
 
-
+app.use(routes)
 
 //-----Adding middleware-------
 //Always! it returns a middleware which parse the url encoded body, this will be used for every request
